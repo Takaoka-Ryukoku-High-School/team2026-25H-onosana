@@ -732,11 +732,29 @@ def main(page: ft.Page):
     if controllers:
         show_controller_detail(controllers[-1]["id"])
 
+    usage_example = ft.Container(
+        content=ft.Column(
+            [
+                ft.Text("使い方の例", size=18, weight=ft.FontWeight.BOLD),
+                ft.Text("1. 電源電圧と配線状態を入力して「診断を実行」します。", size=13),
+                ft.Text("2. 異常項目と推奨対応が表示されるので、修理優先度を判断します。", size=13),
+                ft.Text("3. 制御器名を登録し、履歴として保存すると日々の状態変化を確認できます。", size=13),
+                ft.Text("例: 12.0V / グランド不良 / 断線あり / 発熱が高い → 重大不良として判定されます。", size=13, color="#4B5E57"),
+            ],
+            spacing=6,
+        ),
+        padding=16,
+        bgcolor="#FFFFFF",
+        border_radius=12,
+        border=ft.Border.all(1, "#E1DED3"),
+    )
+
     page.add(
         ft.Column(
             [
                 ft.Text("コントローラ配線チェックシート", size=30, weight=ft.FontWeight.BOLD),
                 ft.Text("制御器を登録し、その状態を時系列で記録・確認できます。", size=14, color="#5A655D"),
+                usage_example,
                 ft.Row([left_panel, right_panel], spacing=20, vertical_alignment=ft.CrossAxisAlignment.START),
             ],
             spacing=22,
